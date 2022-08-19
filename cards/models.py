@@ -3,7 +3,7 @@ from django.conf import settings
 
 class Set(models.Model):
     setName = models.CharField(max_length=50)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.setName
