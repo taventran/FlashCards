@@ -9,12 +9,16 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'email', 'password')
         extra_kwargs = {'password': {'write_only': True, 'required':True}}
 
-class SetSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Set
-        fields = ('setName', 'user')
-
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
         fields = ('term', 'definition', 'set')
+
+class SetSerializer(serializers.ModelSerializer):
+
+    cards = CardSerializer(many=True)
+
+    class Meta:
+        model = Set
+        fields = ('id', 'setName', 'user', 'cards')
+
