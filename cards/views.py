@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth import get_user_model
 from .serializers import UserSerializer, CardSerializer, SetSerializer
 from .models import Card, Set
@@ -17,6 +19,8 @@ class UserViewSet(viewsets.ModelViewSet):
 class CardViewSet(viewsets.ModelViewSet):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, ) 
 
     @action(detail=True, methods=["POST"])
     def makeCard(self, request):
@@ -37,6 +41,8 @@ class CardViewSet(viewsets.ModelViewSet):
 class SetViewSet(viewsets.ModelViewSet):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, ) 
 
     @action(detail=True, methods=["POST"])
     def setName(self, request):
