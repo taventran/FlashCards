@@ -1,4 +1,5 @@
 from django.db import models
+from rest_framework.authtoken.models import Token
 
 # Create your models here.
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
@@ -34,7 +35,8 @@ class UserManager(BaseUserManager):
     return user
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+
+class User(AbstractBaseUser, PermissionsMixin):                     # Unique user model
     email = models.EmailField(max_length=254, unique=True)
     name = models.CharField(max_length=254, null=True, blank=True)
     is_staff = models.BooleanField(default=False)

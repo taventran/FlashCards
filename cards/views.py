@@ -15,6 +15,7 @@ def test(request):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+    permission_classes = (AllowAny, ) 
     
 class CardViewSet(viewsets.ModelViewSet):
     queryset = Card.objects.all()
