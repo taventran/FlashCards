@@ -1,8 +1,6 @@
 from rest_framework import serializers
 from django.conf import settings
 from .models import Set, Card
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 
